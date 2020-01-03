@@ -115,6 +115,9 @@ func Start(log *zap.Logger) {
 					metricData.Network.Staking.TotalSupply,
 					metricData.Network.Staking.BondedRatio,
 
+					metricData.Network.Minting.Inflation,
+					metricData.Network.Minting.ActualInflation,
+
 					metricData.Network.Gov.TotalProposalCount,
 					metricData.Network.Gov.VotingProposalCount,
 

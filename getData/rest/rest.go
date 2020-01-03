@@ -24,6 +24,7 @@ type RESTData struct {
 	Balances	[]Coin
 	Rewards		[]Coin
 	Commission	[]Coin
+	Inflation	float64
 
 	Gov		govInfo
 }
@@ -45,6 +46,7 @@ func GetData(blockHeight int64, log *zap.Logger) (*RESTData, string) {
 
 	rd := newRESTData(blockHeight)
 	rd.StakingPool = getStakingPool(log)
+	rd.Inflation = getInflation(log)
 
 	rd.Validatorsets = getValidatorsets(blockHeight, log)
 	rd.Validators = getValidators(log)
