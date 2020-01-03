@@ -135,7 +135,6 @@ func Start(log *zap.Logger) {
 					metricData.Validator.Commission.MaxChangeRate,
 					metricData.Validator.Commit.VoteType,
 					metricData.Validator.Commit.PrecommitStatus,
-					metricData.Validator.Oracle.Miss,
 
 					metricData.Network.Minting.Inflation,
                                         metricData.Network.Minting.ActualInflation,

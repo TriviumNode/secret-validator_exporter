@@ -110,10 +110,6 @@ type metric struct {
 	                PrecommitStatus         float64
 		}
 
-		Oracle struct {
-			Miss	float64
-		}
-
 	}
 }
 
