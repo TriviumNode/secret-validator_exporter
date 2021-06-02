@@ -1,4 +1,4 @@
-module github.com/node-a-team/kava-validator_exporter
+module github.com/xiphiar/secret-validator_exporter
 
 go 1.13
 

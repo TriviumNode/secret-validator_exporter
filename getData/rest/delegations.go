@@ -4,7 +4,7 @@ import (
 	"strings"
 	"go.uber.org/zap"
 	"encoding/json"
-	utils "github.com/node-a-team/kava-validator_exporter/utils"
+	utils "github.com/xiphiar/secret-validator_exporter/utils"
 )
 
 type delegations struct {

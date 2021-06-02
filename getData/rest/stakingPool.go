@@ -5,7 +5,7 @@ import (
 	"go.uber.org/zap"
 	"encoding/json"
 
-	utils "github.com/node-a-team/kava-validator_exporter/utils"
+	utils "github.com/xiphiar/secret-validator_exporter/utils"
 )
 
 type stakingPool struct {
@@ -37,7 +37,7 @@ func getStakingPool(log *zap.Logger) stakingPool {
                 log.Info("REST-Server", zap.Bool("Success", true), zap.String("err", "nil"), zap.String("Get Data", "Staking Pool"),)
         }
 
-	sp.Result.Total_supply = getTotalSupply("kava", log)
+	sp.Result.Total_supply = getTotalSupply("scrt", log)
 
 	return sp
 }

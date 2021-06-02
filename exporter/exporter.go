@@ -5,10 +5,10 @@ import (
 	"time"
 	"go.uber.org/zap"
 
-	rpc "github.com/node-a-team/kava-validator_exporter/getData/rpc"
-	rest "github.com/node-a-team/kava-validator_exporter/getData/rest"
-	metric "github.com/node-a-team/kava-validator_exporter/exporter/metric"
-	utils "github.com/node-a-team/kava-validator_exporter/utils"
+	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
+	rest "github.com/xiphiar/secret-validator_exporter/getData/rest"
+	metric "github.com/xiphiar/secret-validator_exporter/exporter/metric"
+	utils "github.com/xiphiar/secret-validator_exporter/utils"
 
 	"github.com/prometheus/client_golang/prometheus"
 )

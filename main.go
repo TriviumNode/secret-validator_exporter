@@ -10,13 +10,13 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	cfg "github.com/node-a-team/kava-validator_exporter/config"
-	"github.com/node-a-team/kava-validator_exporter/exporter"
-	rpc "github.com/node-a-team/kava-validator_exporter/getData/rpc"
+	cfg "github.com/xiphiar/secret-validator_exporter/config"
+	"github.com/xiphiar/secret-validator_exporter/exporter"
+	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
 )
 
 const (
-	bech32MainPrefix = "kava"
+	bech32MainPrefix = "secret"
 )
 
 func main() {

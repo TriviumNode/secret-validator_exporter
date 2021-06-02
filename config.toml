@@ -1,4 +1,4 @@
-# TOML Document for Terra-Validator Exporter(Pometheus & Grafana)
+# TOML Document for Secet-Validator Exporter(Pometheus & Grafana)
 
 title = "TOML Document"
 
@@ -8,7 +8,7 @@ title = "TOML Document"
 	rest = "localhost:1317"
 
 [Validator]
-operatorAddr = "kavavaloper1udg4pal8c9gffv4l7zhvza027z0y345gd6esa6"
+operatorAddr = "secretvaloper1ml2tpttk5a0axn8tcl6a82zrt90tz7cqnjdj9h"
 
 [Options]
 listenPort = "26661"

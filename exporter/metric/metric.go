@@ -7,16 +7,16 @@ import (
 //	sdk "github.com/cosmos/cosmos-sdk/types"
 	"go.uber.org/zap"
 
-	rest "github.com/node-a-team/kava-validator_exporter/getData/rest"
-	rpc "github.com/node-a-team/kava-validator_exporter/getData/rpc"
-	cfg "github.com/node-a-team/kava-validator_exporter/config"
-	utils "github.com/node-a-team/kava-validator_exporter/utils"
+	rest "github.com/xiphiar/secret-validator_exporter/getData/rest"
+	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
+	cfg "github.com/xiphiar/secret-validator_exporter/config"
+	utils "github.com/xiphiar/secret-validator_exporter/utils"
 )
 
 var (
 	metricData metric
 
-	DenomList = []string{"ukava"}
+	DenomList = []string{"uscrt"}
 	GaugesNamespaceList = [...]string{"blockHeight",
 				"notBondedTokens",
 				"bondedTokens",

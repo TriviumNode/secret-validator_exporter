@@ -5,8 +5,8 @@ import (
 //	"time"
 
 	"github.com/BurntSushi/toml"
-	rpc "github.com/node-a-team/kava-validator_exporter/getData/rpc"
-	rest "github.com/node-a-team/kava-validator_exporter/getData/rest"
+	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
+	rest "github.com/xiphiar/secret-validator_exporter/getData/rest"
 //	"github.com/spf13/viper"
 )
 

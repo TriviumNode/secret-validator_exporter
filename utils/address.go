@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	bech32MainPrefix = "kava"
+	bech32MainPrefix = "secret"
 )
 
 var (
@@ -45,7 +45,6 @@ func Bech32AddrToHexAddr(bech32str string, log *zap.Logger) string {
 }
 
 func GetAccAddrFromOperAddr(operAddr string, log *zap.Logger) string {
-
         // Get HexAddress
         hexAddr, err := sdk.ValAddressFromBech32(operAddr)
 	// log

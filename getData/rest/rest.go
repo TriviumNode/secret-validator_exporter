@@ -4,7 +4,7 @@ import (
 	"go.uber.org/zap"
 	"os/exec"
 
-	utils "github.com/node-a-team/kava-validator_exporter/utils"
+	utils "github.com/xiphiar/secret-validator_exporter/utils"
 )
 
 var (
