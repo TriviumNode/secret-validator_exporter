@@ -16,4 +16,4 @@ RUN go build -o /val-exporter
 
 EXPOSE 26661
 
-CMD [ "/val-exporter /" ]
+CMD [ "/val-exporter" ]

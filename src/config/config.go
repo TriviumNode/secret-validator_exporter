@@ -2,6 +2,7 @@ package config
 
 import (
 	"log"
+	"os"
 //	"time"
 
 	"github.com/BurntSushi/toml"
@@ -42,12 +43,12 @@ type configType struct {
 
 func Init() {
 
-	Config = readConfig()
+	//Config = readConfig()
 
-	rpc.Addr = Config.Servers.Addr.RPC
-	rest.Addr = Config.Servers.Addr.REST
+	rpc.Addr = os.Getenv("LCD_URL")
+	rest.Addr = os.Getenv("REST_URL")
 
-	rest.OperAddr = Config.Validator.OperatorAddr
+	rest.OperAddr = os.Getenv("OPER_ADDR")
 
 }
 
