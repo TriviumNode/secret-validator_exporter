@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"os"
+	//"os"
 	"go.uber.org/zap"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -31,7 +31,7 @@ func main() {
 	config.SetBech32PrefixForValidator(bech32MainPrefix+sdk.PrefixValidator+sdk.PrefixOperator, bech32MainPrefix+sdk.PrefixValidator+sdk.PrefixOperator+sdk.PrefixPublic)
 	config.SetBech32PrefixForConsensusNode(bech32MainPrefix+sdk.PrefixValidator+sdk.PrefixConsensus, bech32MainPrefix+sdk.PrefixValidator+sdk.PrefixConsensus+sdk.PrefixPublic)
 
-	cfg.ConfigPath = os.Args[1]
+	cfg.ConfigPath = "/abc/" //os.Args[1]
 
 	cfg.Init()
 	rpc.OpenSocket(log)

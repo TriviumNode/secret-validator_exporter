@@ -45,8 +45,8 @@ func Init() {
 
 	//Config = readConfig()
 
-	rpc.Addr = os.Getenv("LCD_URL")
-	rest.Addr = os.Getenv("REST_URL")
+	rpc.Addr = os.Getenv("RPC_URL")
+	rest.Addr = os.Getenv("LCD_URL")
 
 	rest.OperAddr = os.Getenv("OPER_ADDR")
 
