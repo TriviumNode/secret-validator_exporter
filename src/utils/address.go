@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"go.uber.org/zap"
+        "os"
 
 	"github.com/tendermint/tendermint/libs/bech32"
 
@@ -10,8 +11,8 @@ import (
 
 )
 
-const (
-	bech32MainPrefix = "secret"
+var (
+	bech32MainPrefix = os.Getenv("PREFIX")
 )
 
 var (

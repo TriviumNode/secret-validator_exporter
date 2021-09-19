@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	//"os"
+	"os"
 	"go.uber.org/zap"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -15,8 +15,8 @@ import (
 	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
 )
 
-const (
-	bech32MainPrefix = "secret"
+var (
+	bech32MainPrefix = os.Getenv("PREFIX")
 )
 
 func main() {
