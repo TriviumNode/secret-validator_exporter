@@ -2,7 +2,9 @@ package rest
 
 import (
 	"go.uber.org/zap"
-	"os/exec"
+	//"os/exec"
+	"net/http"
+	"io/ioutil"
 
 	utils "github.com/xiphiar/secret-validator_exporter/utils"
 )
@@ -60,10 +62,19 @@ func GetData(blockHeight int64, log *zap.Logger) (*RESTData, string) {
 	return rd, consHexAddr
 }
 
-func runRESTCommand(str string) ([]uint8, error) {
-        cmd := "curl -s -XGET " +Addr +str +" -H \"accept:application/json\""
-        out, err := exec.Command("/bin/bash", "-c", cmd).Output()
-//	fmt.Println(cmd)
+func runRESTCommand(str string, log *zap.Logger) ([]uint8, error) {
+        //cmd := "curl -s -XGET " +Addr +str +" -H \"accept:application/json\""
+        //out, err := exec.Command("/bin/bash", "-c", cmd).Output()
 
+		response, err := http.Get(Addr +str)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+
+		out, rerr := ioutil.ReadAll(response.Body)
+		if rerr != nil {
+			log.Fatal(rerr.Error())
+		}
         return out, err
+
 }

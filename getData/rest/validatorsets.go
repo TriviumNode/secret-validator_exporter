@@ -30,7 +30,7 @@ func getValidatorsets(currentBlockHeight int64, log *zap.Logger) map[string][]st
 	var vSets validatorsets
 	var vSetsResult map[string][]string = make(map[string][]string)
 
-	res, _ := runRESTCommand("/validatorsets/" +fmt.Sprint(currentBlockHeight))
+	res, _ := runRESTCommand("/validatorsets/" +fmt.Sprint(currentBlockHeight), log)
 	json.Unmarshal(res, &vSets)
 
 	// log

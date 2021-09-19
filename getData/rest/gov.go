@@ -50,7 +50,7 @@ func getGovInfo(log *zap.Logger) govInfo {
 
 	votingCount := 0
 
-        res, _ := runRESTCommand("/gov/proposals")
+        res, _ := runRESTCommand("/gov/proposals", log)
         json.Unmarshal(res, &g)
 	// log
         if strings.Contains(string(res), "not found") {

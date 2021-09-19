@@ -17,7 +17,7 @@ func getInflation(log *zap.Logger) float64 {
 
 	var i inflation
 
-	res, _ := runRESTCommand("/minting/inflation")
+	res, _ := runRESTCommand("/minting/inflation", log)
 	json.Unmarshal(res, &i)
 
 	// log 
