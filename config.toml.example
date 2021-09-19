@@ -5,7 +5,7 @@ title = "TOML Document"
 [Servers]
 	[Servers.addr]
 	rpc = "localhost:26657"
-	rest = "localhost:1317"
+	rest = "http://localhost:1317"
 
 [Validator]
 operatorAddr = "secretvaloper1ml2tpttk5a0axn8tcl6a82zrt90tz7cqnjdj9h"
