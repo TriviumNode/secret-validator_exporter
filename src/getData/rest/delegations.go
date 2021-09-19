@@ -29,7 +29,7 @@ func getDelegations(accAddr string, log *zap.Logger) delegationInfo {
 	var d delegations
 	var dInfo delegationInfo
 
-	res, _ := runRESTCommand("/staking/validators/" +OperAddr +"/delegations")
+	res, _ := runRESTCommand("/staking/validators/" +OperAddr +"/delegations", log)
 	json.Unmarshal(res, &d)
 	// log
         if strings.Contains(string(res), "not found") {

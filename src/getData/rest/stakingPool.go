@@ -26,7 +26,7 @@ func getStakingPool(log *zap.Logger) stakingPool {
 
 	var sp stakingPool
 
-	res, _ := runRESTCommand("/staking/pool")
+	res, _ := runRESTCommand("/staking/pool", log)
 	json.Unmarshal(res, &sp)
 
 	// log 
@@ -46,7 +46,7 @@ func getTotalSupply(denom string, log *zap.Logger) float64 {
 
         var ts totalSupply
 
-        res, _ := runRESTCommand("/supply/total/u" +denom)
+        res, _ := runRESTCommand("/supply/total/u" +denom, log)
         json.Unmarshal(res, &ts)
 
 	// log

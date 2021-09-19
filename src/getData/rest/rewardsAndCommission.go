@@ -21,7 +21,7 @@ func getRewardsAndCommisson(log *zap.Logger) ([]Coin, []Coin) {
 
 	var rc rewardsAndCommisson
 
-	res, _ := runRESTCommand("/distribution/validators/" +OperAddr)
+	res, _ := runRESTCommand("/distribution/validators/" +OperAddr, log)
 	json.Unmarshal(res, &rc)
 	// log
         if strings.Contains(string(res), "not found") {

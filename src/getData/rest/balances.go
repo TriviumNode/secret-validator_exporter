@@ -21,7 +21,7 @@ func getBalances(accAddr string, log *zap.Logger) []Coin {
 
 	var b balances
 
-	res, _ := runRESTCommand("/bank/balances/" +accAddr)
+	res, _ := runRESTCommand("/bank/balances/" +accAddr, log)
 	json.Unmarshal(res, &b)
 	// log
         if strings.Contains(string(res), "not found") {

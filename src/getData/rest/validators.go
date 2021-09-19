@@ -41,7 +41,7 @@ func getValidators(log *zap.Logger) validator {
 
 	var v validators
 
-	res, _ := runRESTCommand("/staking/validators/" +OperAddr)
+	res, _ := runRESTCommand("/staking/validators/" +OperAddr, log)
 	json.Unmarshal(res, &v)
 
         // log
