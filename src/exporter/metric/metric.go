@@ -9,7 +9,7 @@ import (
 
 	rest "github.com/xiphiar/secret-validator_exporter/getData/rest"
 	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
-	cfg "github.com/xiphiar/secret-validator_exporter/config"
+	//cfg "github.com/xiphiar/secret-validator_exporter/config"
 	utils "github.com/xiphiar/secret-validator_exporter/utils"
 )
 
@@ -117,7 +117,7 @@ type metric struct {
 
 func SetMetric(currentBlock int64, restData *rest.RESTData, rpcData *rpc.RPCData, log *zap.Logger) {
 
-	operAddr := cfg.Config.Validator.OperatorAddr
+	operAddr := rest.OperAddr
 	consPubKey := restData.Validators.ConsPubKey
 	consAddr := restData.Validatorsets[consPubKey][0]
 
