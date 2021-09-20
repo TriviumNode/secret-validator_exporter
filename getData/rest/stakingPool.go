@@ -37,7 +37,7 @@ func getStakingPool(log *zap.Logger) stakingPool {
                 log.Info("REST-Server", zap.Bool("Success", true), zap.String("err", "nil"), zap.String("Get Data", "Staking Pool"),)
         }
 
-	sp.Result.Total_supply = getTotalSupply("atom", log)
+	sp.Result.Total_supply = getTotalSupply("scrt", log)
 
 	return sp
 }
