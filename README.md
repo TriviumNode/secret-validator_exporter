@@ -1,57 +1,36 @@
-# secret-validator_exporter
-Prometheus exporter for Secret Network Validators
-
-
 ## Introduction
 This exporter is for monitoring information which is not provided from Tendermint’s basic Prometheus exporter (localhost:26660), and other specific information monitoring purposes
 
-## Usage
+# secret-validator_exporter :satellite:
+![CreatePlan](https://img.shields.io/badge/go-1.12.4%2B-blue)
+![CreatePlan](https://img.shields.io/badge/license-Apache--2.0-green)
 
-`go build`
-
-`.\secret-validator_exporter \path\containing\configtoml\`
-
-## Docker
+## Docker Quick-Start
 ```
 docker run --name validator-exporter \
 --publish 26661:26661 \
 --env LCD_URL="http://172.17.0.1:1317" \
 --env RPC_URL="172.17.0.1:26657" \
---env OPER_ADDR="cosmosvaloper1ahawe276d250zpxt0xgpfg63ymmu63a0svuvgw" \
---env PREFIX="cosmos" \
-xiphiar/validator-exporter:1.0
+--env OPER_ADDR="secretvaloper1ahawe276d250zpxt0xgpfg63ymmu63a0svuvgw" \
+--env PREFIX="secret" \
+xiphiar/validator-exporter:latest
 ```
-# cosmos-validator_exporter :satellite:
-![CreatePlan](https://img.shields.io/badge/relase-v0.1.0-red)
-![CreatePlan](https://img.shields.io/badge/go-1.12.4%2B-blue)
-![CreatePlan](https://img.shields.io/badge/license-Apache--2.0-green)
 
-Prometheus exporter for Cosmos Validators
-
-
-## Introduction
-This exporter is for monitoring information which is not provided from Tendermint’s basic Prometheus exporter (localhost:26660), and other specific information monitoring purposes
-
-
-## Collecting information list
+## Metrics Available
 > **Network**
 - chainId: Name of the chain
 - blockHeight: Height of the current block
-- currentBlockTime: Time it takes to create & confirm block (current block time - previous block time)
-- bondedTokens: Number of currently bonded Atom
-- notBondedTokens: Number of unbonded Atom
-- totalBondedTokens: Number of currently bonded & unbonded Atom
-- bondedRate: Ratio of bonded tokens within the network
-- validatorCount: Number of validators within the network
-- precommitRate: Precommit Ratio of precommits collected in a round
-- proposerWalletAccountNumber: Account number given on each validator’s wallet (Required to show Proposer in Grafana) 
+- bondedTokens: Number of currently bonded SCRT
+- notBondedTokens: Number of unbonded SCRT
+- totalBondedTokens: Number of currently bonded & unbonded SCRT
+- bondedRatio: Ratio of bonded tokens within the network
 
 > **Validator Info**
 - moniker: Name of the validator
 - accountAddress: Validator's Account address
 - consHexAddress: Validator's Consensus Hex address
 - operatorAddress: Validator's Operator address
-- validatorPubKey: Validator's Validator pubkey(```gaiad tendermint show-validator```)
+- validatorPubKey: Validator's Validator pubkey(```secretd tendermint show-validator```)
 - votingPower: Decimal truncated Total voting power of the validator
 - delegatorShares: Validator's total delegated tokens
 - delegatorCount: Number of each unique delegators for a validator
@@ -64,82 +43,28 @@ This exporter is for monitoring information which is not provided from Tendermin
 - commissionMaxChangeRate: Max range of commission rate whic hthe validator can change
 - commissionMaxRate: The highest commission rate which the validator can charge
 - commissionRate: Commission rate of the validator charged on delegators' rewards
-- balances(uatom): Wallet information of the validator which shows the balance
-- commission(uatom): Accumulated commission fee of the validator
-- rewards(uatom): Accumulated rewards of the validator
-- minSelfDelegation(Atom): The required minimum number of tokens which the validator must self-delegate
+- balances(uscrt): Wallet information of the validator which shows the balance
+- commission(uscrt): Accumulated commission fee of the validator
+- rewards(uscrt): Accumulated rewards of the validator
+- minSelfDelegation(SCRT): The required minimum number of tokens which the validator must self-delegate
 - jailed: Confirms if the validator is jailed or not(true: 1, false: 0)
-
-![CreatePlan](./example/monitoring_example(prometheus).png)
-
-
-## Quick Start
-RPC and REST server information is required to run the program
-- Download
-```
-wget https://github.com/node-a-team/cosmos-validator_exporter/releases/download/v0.1.0/cosmos-validator_exporter_v0.1.0.tar.gz
-tar -xzvf cosmos-validator_exporter_v0.1.0.tar.gz &&  cd cosmos-validator_exporter
-```
-
- - Config Setup
- 1) Input RPC and Rest server information
- 2) Input validator operator address(```gaiacli keys show [Key Name] --bech=val --address```)
- 3) Set exporter port
- 4) Set outPrint (if true: prints collected information from the exporter)
-```
-vi config.toml
-```
-```
-# TOML Document for Cosmos-Validator Exporter(Pometheus & Grafana)
-
-title = "Cosmos-Validator Exporter TOML"
-network = "cosmos"
-
-# RPC-Server
-[rpc]
-address = "localhost:26657"
-
-[rest_server]
-address = "localhost:1317"
-
-[validator_info]
-operatorAddress = "cosmosvaloper14l0fp639yudfl46zauvv8rkzjgd4u0zk2aseys"
-
-[option]
-exporterListenPort = "26661"
-outputPrint = true
-```
-
-![CreatePlan](./example/config.png)
-
- - Run
-```
-./cosmos-validator_exporter
-```
-
-![CreatePlan](./example/config_outputPrint(true).png)
 
 
 ## Grafana Example
- - template: https://grafana.com/grafana/dashboards/10942/revisions
+ - Template: https://grafana.com/grafana/dashboards/10942/revisions
  
 Can set alarms using the functions on Grafana (ex. Alarms if the validator fails to precommit or gets jailed)
-![CreatePlan](./example/monitoring_example(grafana).png)
 
-## Install
+
+## Build
 ```bash
-mkdir exporter && cd exporter
-
-wget https://github.com/node-a-team/cosmos-validator_exporter/releases/download/v0.3.0/cosmos-validator_exporter.tar.gz  && sha256sum cosmos-validator_exporter.tar.gz | fgrep eae78bad26a13327f8992d39a27e08b19ef2442415e9edc7fc566b7f75500890 && tar -zxvf cosmos-validator_exporter.tar.gz ||  echo "Bad Binary!"
+go build
 ```
 
 ## Config
 1. Modify to the appropriate RPC and REST server address
 2. Modify the value of ```operatorAddr``` to the operator address of the validator you want to monitor.
 3. You can change the service port(default: 26661)
-```bash
-vi config.toml
-```
 ```bash
 # TOML Document for Cosmos-Validator Exporter(Pometheus & Grafana)
 
@@ -151,7 +76,7 @@ title = "TOML Document"
         rest = "localhost:1317"
 
 [Validator]
-operatorAddr = "cosmosvaloper14l0fp639yudfl46zauvv8rkzjgd4u0zk2aseys"
+operatorAddr = "secretvaloper14l0fp639yudfl46zauvv8rkzjgd4u0zk2aseys"
 
 [Options]
 listenPort = "26661"
@@ -161,35 +86,42 @@ listenPort = "26661"
 ## Start
   
 ```bash
-./cosmos-validator_exporter {path to config.toml}
+./secret-validator_exporter {path containing config.toml}
 
 // ex)
-./cosmos-validator_exporter /data/cosmos/exporter
+./secret-validator_exporter /data/secret/exporter/
 ```
 
 ## Use systemd service
   
 ```sh
+# create user 'secret'
+adduser secret
+
 # Make log directory & file
 sudo mkdir /var/log/userLog  
-sudo touch /var/log/userLog/cosmos-validator_exporter.log  
-# user: cosmos
-sudo chown cosmos:cosmos /var/log/userLog/cosmos-validator_exporter.log
+sudo touch /var/log/userLog/secret-validator_exporter.log  
+sudo chown secret:secret /var/log/userLog/secret-validator_exporter.log
 
-# $HOME: /data/cosmos
-# Path to config.toml: /data/cosmos/exporter
-sudo tee /etc/systemd/system/cosmos-validator_exporter.service > /dev/null <<EOF
+# Setup working directory
+mkdir /home/secret/exporter
+cp ./secret-validator_exporter /home/secret/exporter/
+cp ./config.toml /home/secret/exporter/
+sudo chown -R secret:secret /home/secret/exporter
+
+# Create systemd service
+sudo tee /etc/systemd/system/secret-validator_exporter.service > /dev/null <<EOF
 [Unit]
-Description=Cosmos Validator Exporter
+Description=Secret Validator Exporter
 After=network-online.target
 
 [Service]
-User=cosmos
-WorkingDirectory=/data/cosmos
-ExecStart=/data/cosmos/exporter/cosmos-validator_exporter \
-        /data/cosmos/exporter
-StandardOutput=file:/var/log/userLog/cosmos-validator_exporter.log
-StandardError=file:/var/log/userLog/cosmos-validator_exporter.log
+User=secret
+WorkingDirectory=/home/secret/exporter
+ExecStart=/home/secret/exporter/secret-validator_exporter \
+        /home/secret/exporter
+StandardOutput=file:/var/log/userLog/secret-validator_exporter.log
+StandardError=file:/var/log/userLog/secret-validator_exporter.log
 Restart=always
 RestartSec=3
 
@@ -197,10 +129,10 @@ RestartSec=3
 WantedBy=multi-user.target
 EOF
 
-sudo systemctl enable cosmos-validator_exporter.service
-sudo systemctl restart cosmos-validator_exporter.service
+sudo systemctl enable secret-validator_exporter.service
+sudo systemctl restart secret-validator_exporter.service
 
 
 ## log
-tail -f /var/log/userLog/cosmos-validator_exporter.log
+tail -f /var/log/userLog/secret-validator_exporter.log
 ```
