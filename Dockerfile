@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 
-FROM golang:1.16-alpine
+FROM golang:1.16-alpine AS build
 
 WORKDIR /app
 
@@ -14,6 +14,12 @@ COPY /src/. ./
 
 RUN go build -o /val-exporter
 
+FROM alpine:latest
+
+WORKDIR /
+
+COPY --from=build /val-exporter /val-exporter
+
 EXPOSE 26661
 
-CMD [ "/val-exporter" ]
+ENTRYPOINT [ "./val-exporter" ]
