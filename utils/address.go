@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	bech32MainPrefix = "cosmos"
+	bech32MainPrefix = "secret"
 )
 
 var (
