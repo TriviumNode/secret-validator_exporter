@@ -116,12 +116,10 @@ Description=Secret Validator Exporter
 After=network-online.target
 
 [Service]
-User=secret
-WorkingDirectory=/home/secret/exporter
-ExecStart=/home/secret/exporter/secret-validator_exporter \
-        /home/secret/exporter
-StandardOutput=file:/var/log/userLog/secret-validator_exporter.log
-StandardError=file:/var/log/userLog/secret-validator_exporter.log
+User=secretexporter
+WorkingDirectory=/home/secretexporter/exporter
+ExecStart=/home/secret/secretexporter/secret-validator_exporter \
+        /home/secretexporter/exporter
 Restart=always
 RestartSec=3
 
@@ -134,5 +132,5 @@ sudo systemctl restart secret-validator_exporter.service
 
 
 ## log
-tail -f /var/log/userLog/secret-validator_exporter.log
+journalctl -u secret-validator_exporter -f
 ```
