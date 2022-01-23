@@ -1,14 +1,14 @@
 package exporter
 
 import (
-	"fmt"
+	//"fmt"
 	"time"
 	"go.uber.org/zap"
 
-	rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
-	rest "github.com/xiphiar/secret-validator_exporter/getData/rest"
+	//rpc "github.com/xiphiar/secret-validator_exporter/getData/rpc"
+	//rest "github.com/xiphiar/secret-validator_exporter/getData/rest"
 	metric "github.com/xiphiar/secret-validator_exporter/exporter/metric"
-	utils "github.com/xiphiar/secret-validator_exporter/utils"
+	//utils "github.com/xiphiar/secret-validator_exporter/utils"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -66,7 +66,7 @@ func Start(log *zap.Logger) {
 
 			}()
 
-
+			/*
 			currentBlockHeight := rpc.BlockHeight()
 
 			if previousBlockHeight != currentBlockHeight {
@@ -75,9 +75,10 @@ func Start(log *zap.Logger) {
 
 
 				restData, consHexAddr := rest.GetData(currentBlockHeight, log)
-				rpcData := rpc.GetData(currentBlockHeight, consHexAddr, log)
+				_ = consHexAddr // FUCK GOLANG
+				//rpcData := rpc.GetData(currentBlockHeight, consHexAddr, log)
 
-				metric.SetMetric(currentBlockHeight, restData, rpcData, log)
+				metric.SetMetric(currentBlockHeight, restData, log)
 
 				metricData := metric.GetMetric()
 				denomList := metric.GetDenomList()
@@ -155,6 +156,7 @@ func Start(log *zap.Logger) {
 			}
 
 			previousBlockHeight = currentBlockHeight
+			*/
 		}()
 	}
 }
